@@ -44,8 +44,17 @@ if not re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', version):
     logger.error("Invalid version format")
     sys.exit(1)
 
-# get the project name from the repository URL
-repo_url = os.environ["REPOSITORY_URL"]
+# Get repository information
+github_repository = os.environ.get("GITHUB_REPOSITORY", "")
+repository_url = os.environ.get("REPOSITORY_URL", "")
+
+# If REPOSITORY_URL is not set, try to construct it from GITHUB_REPOSITORY
+if not repository_url and github_repository:
+    repository_url = f"https://github.com/{github_repository}"
+elif not repository_url:
+    logger.error("Neither REPOSITORY_URL nor GITHUB_REPOSITORY environment variables are set")
+    sys.exit(1)
+
 
 # construct changelog URL with proper quoting
 changelog="https://github.com/snakemake/snakemake-executor-plugin-slurm/releases/tag/v${version}"
