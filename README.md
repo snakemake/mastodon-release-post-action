@@ -66,10 +66,13 @@ Give us some time and you will automatically find the plugin on #Bioconda and #P
 If you want to discuss the release you will find the maintainers here on Mastodon!
 <maintainer handles on Moston or indicate BS bridges>
 
-If you find any issues, please report them on {{ issue_url }}
+If you find any issues, please report them on {{ issue_url }} .
+
+#OpenScience #ReproducibleComputing #
 ```
 
 You may deviate from this template. Please be sure to mention that this is
 - a message of the Snakemake announcement bot and not a message created by humans
 - use the available variables
 - indicate contact handles
+- to improve visibility to the intended audiences, you might want to add hashtags
