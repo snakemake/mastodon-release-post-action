@@ -70,8 +70,9 @@ else:
     changelog = f"{repository_url}/releases/tag/v{version}"
 
     # Check if CHANGELOG_FILE environment variable is set
-    changelog_file = os.environ.get("CHANGELOG_FILE", "CHANGELOG.md")
-    if changelog_file:
+    # Check if CHANGELOG_FILE environment variable is set and not empty
+    changelog_file = os.environ.get("CHANGELOG_FILE", "")
+    if changelog_file.strip():
         # Use the specified changelog file instead of releases/tag
         changelog = f"{repository_url}/blob/main/{changelog_file}"
 
