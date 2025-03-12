@@ -55,6 +55,9 @@ elif not repository_url:
     logger.error("Neither REPOSITORY_URL nor GITHUB_REPOSITORY environment variables are set")
     sys.exit(1)
 
+# Get issue URL if available
+issue_url = os.environ.get("ISSUE_URL", f"{repository_url}/issues")
+
 
 # construct changelog URL with proper quoting
 changelog="https://github.com/snakemake/snakemake-executor-plugin-slurm/releases/tag/v${version}"
