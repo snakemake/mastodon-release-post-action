@@ -1,0 +1,29 @@
+name: Post to Mastodon on Release
+description: A GitHub Action to post release announcements to Mastodon
+author: Christian Meesters
+
+inputs:
+  message:
+    description: 'The message to post to Mastodon'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y python3-mastodon
+      shell: bash
+      
+    - name: Post to Mastodon
+      uses: nick-fields/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: |
+          export MASTODONBOT="${{ secrets.MASTODONBOT }}"
+          export PR_TITLE="${{ github.event.pull_request.title }}"
+          chmod +x $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
+          $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py

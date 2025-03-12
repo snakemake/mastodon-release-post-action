@@ -16,8 +16,16 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", help="Message to post to Mastodon")
 args = parser.parse_args()
 
-m = Mastodon(access_token=os.environ["MASTODON_ACCESS_TOKEN"],
-                      api_base_url="https://fediscience.org")
+# Configure Mastodon connection
+mastodon_access_token = os.environ.get("MASTODON_ACCESS_TOKEN")
+mastodon_base_url = os.environ.get("MASTODON_BASE_URL", "https://fediscience.org")
+
+if not mastodon_access_token:
+    logger.error("MASTODON_ACCESS_TOKEN environment variable not set")
+    sys.exit(1)
+
+m = Mastodon(access_token=mastodon_access_token,
+             api_base_url=mastodon_base_url)
 
 pr_title = os.environ["PR_TITLE"]
 if pr_title == "":
@@ -36,18 +44,49 @@ if not re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', version):
     logger.error("Invalid version format")
     sys.exit(1)
 
-# get the project name from the repository URL
-repo_url = os.environ["REPOSITORY_URL"]
+# Get repository information
+github_repository = os.environ.get("GITHUB_REPOSITORY", "")
+repository_url = os.environ.get("REPOSITORY_URL", "")
 
-# construct changelog URL with proper quoting
-changelog="https://github.com/snakemake/snakemake-executor-plugin-slurm/releases/tag/v${version}"
+# If REPOSITORY_URL is not set, try to construct it from GITHUB_REPOSITORY
+if not repository_url and github_repository:
+    repository_url = f"https://github.com/{github_repository}"
+elif not repository_url:
+    logger.error("Neither REPOSITORY_URL nor GITHUB_REPOSITORY environment variables are set")
+    sys.exit(1)
+
+# Get issue URL if available
+issue_url = os.environ.get("ISSUE_URL", f"{repository_url}/issues")
+
+# Determine changelog path/URL
+# Check if a custom changelog path is provided
+changelog_path = os.environ.get("CHANGELOG_PATH", "")
+if changelog_path:
+    # Use the provided changelog path
+    changelog = f"{repository_url}/{changelog_path}"
+else:
+    # Try to determine if this is a release tag or a changelog file
+    # Default to releases/tag format
+    changelog = f"{repository_url}/releases/tag/v{version}"
+
+    # Check if CHANGELOG_FILE environment variable is set
+    # Check if CHANGELOG_FILE environment variable is set and not empty
+    changelog_file = os.environ.get("CHANGELOG_FILE", "")
+    if changelog_file.strip():
+        # Use the specified changelog file instead of releases/tag
+        changelog = f"{repository_url}/blob/main/{changelog_file}"
 
 # Maximum characters for Mastodon (on FediScience) is 1500
-MAX_TOOT_LENGTH = 1500
+MAX_TOOT_LENGTH = int(os.environ.get("MAX_TOOT_LENGTH", 1500))
 
-# render the message and replace the changelong
+# Render the message with all available variables
 template = jinja2.Template(args.message)
-message = template.render(version=version, changelog=changelog)
+message = template.render(
+    version=version,
+    changelog=changelog,
+    issue_url=issue_url,
+    repository_url=repository_url
+)
 
 # check if the message is too long
 if len(message) > MAX_TOOT_LENGTH:
