@@ -35,24 +35,41 @@ jobs:
       - name: Post to Mastodon
         uses: snakemake/mastodon-release-post-action@v1
         with:
-          message: "🎉 Snakemake {{ version }} has been released! Check out the changelog: {{ changelog }}"
+          message: |
+            Beep, Beep - I am your friendly #Snakemake release announcement bot.
+            
+            There is a new release of the Snakemake executor for #SLURM on #HPC systems. Its version is {{ version }}!
+            
+            See {{ changelog }} for details.
+            
+            Give us some time and you will automatically find the plugin on #Bioconda and #Pypi.
+            
+            If you want to discuss the release you will find the maintainers here on Mastodon!
+            @rupdecat and @johanneskoester
+            
+            If you find any issues, please report them on {{ issue_url }}
 ```
 
 ### Step 2: Adapt the message
 
-We recomment using a message format like this - it is the example from the executor plugin for SLURM. For your messages, you will need to adapt the description:
+We recomment using a message format like this - the example above is from the executor plugin for SLURM. For your messages, you will need to adapt the description:
 
 ```
 Beep, Beep - I am your friendly #Snakemake release announcement bot.
 
-There is a new release of the Snakemake executor for #SLURM on #HPC systems. Its version is {{ version }}!
+There is a new release of the Snakemake executor for <your description>. Its version is {{ version }}!
 
-See {{ changelog }}for details.
+See {{ changelog }} for details.
 
 Give us some time and you will automatically find the plugin on #Bioconda and #Pypi.
 
 If you want to discuss the release you will find the maintainers here on Mastodon!
-@rupdecat and @johanneskoester
+<maintainer handles on Moston or indicate BS bridges>
 
 If you find any issues, please report them on {{ issue_url }}
 ```
+
+You may deviate from this template. Please be sure to mention that this is
+- a message of the Snakemake announcement bot and not a message created by humans
+- use the available variables
+- indicate contact handles
