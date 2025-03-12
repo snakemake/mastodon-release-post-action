@@ -74,13 +74,18 @@ else:
     if changelog_file:
         # Use the specified changelog file instead of releases/tag
         changelog = f"{repository_url}/blob/main/{changelog_file}"
-        
-# Maximum characters for Mastodon (on FediScience) is 1500
-MAX_TOOT_LENGTH = 1500
 
-# render the message and replace the changelong
+# Maximum characters for Mastodon (on FediScience) is 1500
+MAX_TOOT_LENGTH = int(os.environ.get("MAX_TOOT_LENGTH", 1500))
+
+# Render the message with all available variables
 template = jinja2.Template(args.message)
-message = template.render(version=version, changelog=changelog)
+message = template.render(
+    version=version,
+    changelog=changelog,
+    issue_url=issue_url,
+    repository_url=repository_url
+)
 
 # check if the message is too long
 if len(message) > MAX_TOOT_LENGTH:
