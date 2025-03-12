@@ -58,10 +58,23 @@ elif not repository_url:
 # Get issue URL if available
 issue_url = os.environ.get("ISSUE_URL", f"{repository_url}/issues")
 
+# Determine changelog path/URL
+# Check if a custom changelog path is provided
+changelog_path = os.environ.get("CHANGELOG_PATH", "")
+if changelog_path:
+    # Use the provided changelog path
+    changelog = f"{repository_url}/{changelog_path}"
+else:
+    # Try to determine if this is a release tag or a changelog file
+    # Default to releases/tag format
+    changelog = f"{repository_url}/releases/tag/v{version}"
 
-# construct changelog URL with proper quoting
-changelog="https://github.com/snakemake/snakemake-executor-plugin-slurm/releases/tag/v${version}"
-
+    # Check if CHANGELOG_FILE environment variable is set
+    changelog_file = os.environ.get("CHANGELOG_FILE", "CHANGELOG.md")
+    if changelog_file:
+        # Use the specified changelog file instead of releases/tag
+        changelog = f"{repository_url}/blob/main/{changelog_file}"
+        
 # Maximum characters for Mastodon (on FediScience) is 1500
 MAX_TOOT_LENGTH = 1500
 
