@@ -24,8 +24,8 @@ if not mastodon_access_token:
     logger.error("MASTODON_ACCESS_TOKEN environment variable not set")
     sys.exit(1)
 
-m = Mastodon(access_token=os.environ["MASTODON_ACCESS_TOKEN"],
-                      api_base_url="https://fediscience.org")
+m = Mastodon(access_token=mastodon_access_token,
+             api_base_url=mastodon_base_url)
 
 pr_title = os.environ["PR_TITLE"]
 if pr_title == "":
