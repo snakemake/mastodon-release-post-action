@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.0...v1.0.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* correct naming and hopefully corrected export ([aee189f](https://www.github.com/snakemake/mastodon-release-post-action/commit/aee189fced57b2761ee0b82773ef9bf7c017df66))
+
 ## 1.0.0 (2025-03-12)
 
 
