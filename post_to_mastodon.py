@@ -17,11 +17,11 @@ parser.add_argument("--message", help="Message to post to Mastodon")
 args = parser.parse_args()
 
 # Configure Mastodon connection
-mastodon_access_token = os.environ.get("MASTODON_ACCESS_TOKEN")
+mastodon_access_token = os.environ.get("MASTODONBOT")
 mastodon_base_url = os.environ.get("MASTODON_BASE_URL", "https://fediscience.org")
 
 if not mastodon_access_token:
-    logger.error("MASTODON_ACCESS_TOKEN environment variable not set")
+    logger.error("MASTODONBOT environment variable not set")
     sys.exit(1)
 
 m = Mastodon(access_token=mastodon_access_token,
