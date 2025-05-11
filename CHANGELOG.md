@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.2...v1.0.3) (2025-05-11)
+
+
+### Bug Fixes
+
+* another attempt ([ada3d5f](https://www.github.com/snakemake/mastodon-release-post-action/commit/ada3d5fdc2a366da251e78268bd59b290de0cb69))
+
 ### [1.0.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.1...v1.0.2) (2025-05-11)
 
 
