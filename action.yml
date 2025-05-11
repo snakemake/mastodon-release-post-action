@@ -19,12 +19,11 @@ runs:
       
     - name: Post to Mastodon
       uses: nick-fields/retry@v2
-      env:
-        MASTODONBOT: ${{ secrets.MASTODONBOT }}
-        PR_TITLE: ${{ github.event.pull_request.title }}
       with:
         timeout_minutes: 10
         max_attempts: 3
         command: |
+          export MASTODONBOT="${{ secrets.MASTODONBOT }}"
+          export PR_TITLE="${{ github.event.pull_request.title }}"
           chmod +x $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
           $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
