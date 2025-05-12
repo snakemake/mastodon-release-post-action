@@ -6,6 +6,9 @@ inputs:
   message:
     description: 'The message to post to Mastodon'
     required: true
+  access-token:
+    description: 'Mastodon access token for authentication'
+    required: true
 
 runs:
   using: "composite"
@@ -24,4 +27,7 @@ runs:
         max_attempts: 3
         command: |
           chmod +x $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
-          $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
+          $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py \
+            --message "${{ inputs.message }}" \
+            --access-token ${{ input.access-token }} 
+      shell: bash
