@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.3...v1.0.4) (2025-05-12)
+
+
+### Bug Fixes
+
+* removing secrets - only to be tried in the workflow, not the action ([e8ea4f8](https://www.github.com/snakemake/mastodon-release-post-action/commit/e8ea4f8c4c1cb2cc3a40f57206208bd483b2089d))
+
 ### [1.0.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.2...v1.0.3) (2025-05-11)
 
 
