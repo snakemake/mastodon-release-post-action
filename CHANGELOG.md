@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.5](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.4...v1.0.5) (2025-05-12)
+
+
+### Bug Fixes
+
+* attempting to hand over message and access token as inputs ([c53fc32](https://www.github.com/snakemake/mastodon-release-post-action/commit/c53fc32d176782e72350c0a61ac4c9f492f4ef5a))
+
 ### [1.0.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.3...v1.0.4) (2025-05-12)
 
 
