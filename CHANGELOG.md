@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.8](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.7...v1.0.8) (2025-05-13)
+
+
+### Bug Fixes
+
+* another attempt ([63f2dcd](https://www.github.com/snakemake/mastodon-release-post-action/commit/63f2dcdd93c5850782e914a0cfa0205265a404b9))
+
 ### [1.0.7](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.6...v1.0.7) (2025-05-13)
 
 
