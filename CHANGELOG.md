@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.0...v1.1.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* added pr-title to allowed inputs ([da3b5c3](https://www.github.com/snakemake/mastodon-release-post-action/commit/da3b5c390cb035a4fe5affb6bfed33c8df257dd2))
+
 ## [1.1.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.8...v1.1.0) (2025-05-13)
 
 
