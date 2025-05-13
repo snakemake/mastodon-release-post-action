@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.INFO)
 parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
+parser.add_argument("--pr-title", required=True, help="Pull request title")
 args = parser.parse_args()
 
 # Configure Mastodon connection
@@ -28,7 +29,7 @@ if not mastodon_access_token:
 m = Mastodon(access_token=mastodon_access_token,
              api_base_url=mastodon_base_url)
 
-pr_title = os.environ["PR_TITLE"]
+pr_title = args.pr_title
 if pr_title == "":
     logger.error("PR_TITLE is empty")
     sys.exit(1)
