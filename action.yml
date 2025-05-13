@@ -9,6 +9,9 @@ inputs:
   access-token:
     description: 'Mastodon access token for authentication'
     required: true
+  pr-title:
+    description: 'The title of the pull request'
+    required: true
 
 runs:
   using: "composite"
