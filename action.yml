@@ -28,4 +28,5 @@ runs:
         command: |
           python3 ${{ github.action_path }}/post_to_mastodon.py \
             --message "${{ inputs.message }}" \
-            --access-token "${{ inputs.access-token }}"
+            --access-token "${{ inputs.access-token }}" \
+            --pr-title "${{ inputs.pr-title }}"
