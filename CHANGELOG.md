@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.6](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.5...v1.0.6) (2025-05-13)
+
+
+### Bug Fixes
+
+* deleted 'shell' directive, apparently not allowed here ([c9327ed](https://www.github.com/snakemake/mastodon-release-post-action/commit/c9327ed254eef2f9d6b57bdd741fe61223260065))
+
 ### [1.0.5](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.4...v1.0.5) (2025-05-12)
 
 
