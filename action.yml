@@ -30,4 +30,3 @@ runs:
           $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py \
             --message "${{ inputs.message }}" \
             --access-token "${{ inputs.access-token }}"
-      shell: bash
