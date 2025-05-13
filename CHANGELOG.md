@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.7](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.6...v1.0.7) (2025-05-13)
+
+
+### Bug Fixes
+
+* not using path variable any longer ([06e08b4](https://www.github.com/snakemake/mastodon-release-post-action/commit/06e08b4377a0e11965f29a81493b73d00a9e9bd7))
+
 ### [1.0.6](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.5...v1.0.6) (2025-05-13)
 
 
