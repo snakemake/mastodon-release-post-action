@@ -26,7 +26,6 @@ runs:
         timeout_minutes: 10
         max_attempts: 3
         command: |
-          chmod +x $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py
-          $GITHUB_WORKSPACE/.github/workflows/post_to_mastodon.py \
+          python3 .github/workflows/post_to_mastodon.py \
             --message "${{ inputs.message }}" \
             --access-token "${{ inputs.access-token }}"
