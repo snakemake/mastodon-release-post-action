@@ -16,29 +16,29 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
 parser.add_argument("--pr-title", required=True, help="Pull request title")
+# the default base URL is set to FediScience, because we are using it for the Mastodon bot
+# but it can be overridden by the user
+parser.add_argument("--base-url", default="https://fediscience.org", help="Mastodon base URL")
 args = parser.parse_args()
 
-# Configure Mastodon connection
-mastodon_access_token = os.environ.get("MASTODONBOT", args.access_token)
-mastodon_base_url = os.environ.get("MASTODON_BASE_URL", "https://fediscience.org")
 
 if not mastodon_access_token:
     logger.error("MASTODONBOT environment variable not set")
     sys.exit(1)
 
-m = Mastodon(access_token=mastodon_access_token,
-             api_base_url=mastodon_base_url)
+m = Mastodon(access_token=args.access_token,
+             api_base_url=args.base_url)
 
 pr_title = args.pr_title
 if pr_title == "":
-    logger.error("PR_TITLE is empty")
+    logger.error("PR title is empty")
     sys.exit(1)
 
-match = re.search(r'[Rr]elease\s+([0-9]+\.[0-9]+\.[0-9]+)', PR_TITLE)
+match = re.search(r'[Rr]elease\s+([0-9]+\.[0-9]+\.[0-9]+)', pr_title)
 if match:
     version = match.group(1)
 else:
-    logger.error("No version found in PR_TITLE")
+    logger.error("No version found in PR title")
     sys.exit(1)
 
 # validate version format
