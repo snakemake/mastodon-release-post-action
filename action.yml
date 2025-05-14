@@ -12,6 +12,9 @@ inputs:
   pr-title:
     description: 'The title of the pull request'
     required: true
+  base-url:
+    description: 'The base URL of the Mastodon instance'
+    required: false
 
 runs:
   using: "composite"
@@ -32,4 +35,5 @@ runs:
           python3 ${{ github.action_path }}/post_to_mastodon.py \
             --message "${{ inputs.message }}" \
             --access-token "${{ inputs.access-token }}" \
-            --pr-title "${{ inputs.pr-title }}"
+            --pr-title "${{ inputs.pr-title }}" \
+            --base-url "${{ inputs.base-url }}"
