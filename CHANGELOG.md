@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.1...v1.2.0) (2025-05-15)
+
+
+### Features
+
+* added option to include a base-url, differing from fediscience ([89ece3c](https://www.github.com/snakemake/mastodon-release-post-action/commit/89ece3c37c37fd73d43de2f699166533fe74df2b))
+* the base url is only set, if given ([a341c43](https://www.github.com/snakemake/mastodon-release-post-action/commit/a341c4359b9564476ea71982ae395500fe5b1cf1))
+
+
+### Bug Fixes
+
+* hopefully better inner workings ([302c37f](https://www.github.com/snakemake/mastodon-release-post-action/commit/302c37f10ac428f7c053d447c3406703df046753))
+* working now ([8973533](https://www.github.com/snakemake/mastodon-release-post-action/commit/8973533836e8114b9aeece59eadbc60f7b47795f))
+
 ### [1.1.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.0...v1.1.1) (2025-05-13)
 
 
