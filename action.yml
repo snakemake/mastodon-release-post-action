@@ -12,6 +12,9 @@ inputs:
   pr-title:
     description: 'The title of the pull request'
     required: true
+  base-url:
+    description: 'The base URL of the Mastodon instance'
+    required: false
 
 runs:
   using: "composite"
@@ -29,7 +32,8 @@ runs:
         timeout_minutes: 10
         max_attempts: 3
         command: |
-          python3 ${{ github.action_path }}/post_to_mastodon.py \
-            --message "${{ inputs.message }}" \
-            --access-token "${{ inputs.access-token }}" \
-            --pr-title "${{ inputs.pr-title }}"
+              python3 ${{ github.action_path }}/post_to_mastodon.py \
+              --message "${{ inputs.message }}" \
+              --access-token "${{ inputs.access-token }}" \
+              --pr-title "${{ inputs.pr-title }}" \
+              ${{ inputs.base-url && format('--base-url {0}', inputs.base-url) }}
