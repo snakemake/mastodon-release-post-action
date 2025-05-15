@@ -21,10 +21,7 @@ parser.add_argument("--pr-title", required=True, help="Pull request title")
 parser.add_argument("--base-url", default="https://fediscience.org", help="Mastodon base URL")
 args = parser.parse_args()
 
-
-if not mastodon_access_token:
-    logger.error("MASTODONBOT environment variable not set")
-    sys.exit(1)
+mastodon_access_token = args.access_token
 
 m = Mastodon(access_token=args.access_token,
              api_base_url=args.base_url)
@@ -48,7 +45,7 @@ if not re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', version):
 
 # Get repository information
 github_repository = os.environ.get("GITHUB_REPOSITORY", "")
-repository_url = os.environ.get("REPOSITORY_URL", "")
+repository_url = os.environ.get("REPOSITORY_URL", "") 
 
 # If REPOSITORY_URL is not set, try to construct it from GITHUB_REPOSITORY
 if not repository_url and github_repository:
