@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.1...v1.2.2) (2025-05-16)
+
+
+### Bug Fixes
+
+* added empty last line ([8fbff55](https://www.github.com/snakemake/mastodon-release-post-action/commit/8fbff552642559eac25bffffa6d5949775cf046b))
+* protecting base url flag with if statement ([79b95ac](https://www.github.com/snakemake/mastodon-release-post-action/commit/79b95acaa4992612f3d745134c6aa0445e2b34ba))
+
 ### [1.2.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.0...v1.2.1) (2025-05-16)
 
 
