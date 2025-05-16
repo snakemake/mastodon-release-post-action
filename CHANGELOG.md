@@ -1,5 +1,45 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.0...v1.2.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* bugfix for dangling backslash, if no base-url is given ([b5b602b](https://www.github.com/snakemake/mastodon-release-post-action/commit/b5b602b5cdd882a3de89690bf0342c1585497d55))
+
+## [1.2.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.1...v1.2.0) (2025-05-15)
+
+
+### Features
+
+* added option to include a base-url, differing from fediscience ([89ece3c](https://www.github.com/snakemake/mastodon-release-post-action/commit/89ece3c37c37fd73d43de2f699166533fe74df2b))
+* the base url is only set, if given ([a341c43](https://www.github.com/snakemake/mastodon-release-post-action/commit/a341c4359b9564476ea71982ae395500fe5b1cf1))
+
+
+### Bug Fixes
+
+* hopefully better inner workings ([302c37f](https://www.github.com/snakemake/mastodon-release-post-action/commit/302c37f10ac428f7c053d447c3406703df046753))
+* working now ([8973533](https://www.github.com/snakemake/mastodon-release-post-action/commit/8973533836e8114b9aeece59eadbc60f7b47795f))
+
+### [1.1.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.0...v1.1.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* added pr-title to allowed inputs ([da3b5c3](https://www.github.com/snakemake/mastodon-release-post-action/commit/da3b5c390cb035a4fe5affb6bfed33c8df257dd2))
+
+## [1.1.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.8...v1.1.0) (2025-05-13)
+
+
+### Features
+
+* added argument parsing for pr title ([1678071](https://www.github.com/snakemake/mastodon-release-post-action/commit/1678071a6a01c3d93f90523c46dd10f8f84d73fd))
+
+
+### Bug Fixes
+
+* added pr title as input ([8c53fe5](https://www.github.com/snakemake/mastodon-release-post-action/commit/8c53fe55379a8cb6ee6a40a5af745b1d303c1f79))
+
 ### [1.0.8](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.0.7...v1.0.8) (2025-05-13)
 
 
