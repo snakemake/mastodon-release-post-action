@@ -32,8 +32,10 @@ runs:
         timeout_minutes: 10
         max_attempts: 3
         command: |
-              python3 ${{ github.action_path }}/post_to_mastodon.py \
-              --message "${{ inputs.message }}" \
-              --access-token "${{ inputs.access-token }}" \
-              --pr-title "${{ inputs.pr-title }}" \
-              ${{ inputs.base-url && format('--base-url {0}', inputs.base-url) || '' }}
+          python3 ${{ github.action_path }}/post_to_mastodon.py \
+          --message "${{ inputs.message }}" \
+          --access-token "${{ inputs.access-token }}" \
+          --pr-title "${{ inputs.pr-title }}" \
+          ${{ if inputs.base-url }}
+            --base-url "${{ inputs.base-url }}"
+          ${{ endif }}
