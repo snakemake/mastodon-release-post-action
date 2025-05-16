@@ -35,7 +35,14 @@ runs:
           python3 ${{ github.action_path }}/post_to_mastodon.py \
           --message "${{ inputs.message }}" \
           --access-token "${{ inputs.access-token }}" \
-          --pr-title "${{ inputs.pr-title }}" \
-          ${{ if inputs.base-url }}
-            --base-url "${{ inputs.base-url }}"
-          ${{ endif }}
+        command: |
+          set -o errexit
+          args=(
+            --message "${{ inputs.message }}"
+            --access-token "${{ inputs.access-token }}"
+            --pr-title "${{ inputs.pr-title }}"
+          )
+          if [ -n "${{ inputs.base-url }}" ]; then
+            args+=(--base-url "${{ inputs.base-url }}" )
+          fi
+          python3 "${{ github.action_path }}/post_to_mastodon.py" "${args[@]}"
