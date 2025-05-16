@@ -46,3 +46,4 @@ runs:
             args+=(--base-url "${{ inputs.base-url }}" )
           fi
           python3 "${{ github.action_path }}/post_to_mastodon.py" "${args[@]}"
+
