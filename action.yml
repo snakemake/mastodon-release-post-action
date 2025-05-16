@@ -32,10 +32,6 @@ runs:
         timeout_minutes: 10
         max_attempts: 3
         command: |
-          python3 ${{ github.action_path }}/post_to_mastodon.py \
-          --message "${{ inputs.message }}" \
-          --access-token "${{ inputs.access-token }}" \
-        command: |
           set -o errexit
           args=(
             --message "${{ inputs.message }}"
