@@ -36,4 +36,4 @@ runs:
               --message "${{ inputs.message }}" \
               --access-token "${{ inputs.access-token }}" \
               --pr-title "${{ inputs.pr-title }}" \
-              ${{ inputs.base-url && format('--base-url {0}', inputs.base-url) }}
+              ${{ inputs.base-url && format('--base-url {0}', inputs.base-url) || '' }}
