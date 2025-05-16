@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.2...v1.2.3) (2025-05-16)
+
+
+### Bug Fixes
+
+* duplicated command directive ([8df339e](https://www.github.com/snakemake/mastodon-release-post-action/commit/8df339ea7d3718d6caeba59f89d771baffda213a))
+
 ### [1.2.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.1...v1.2.2) (2025-05-16)
 
 
