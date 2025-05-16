@@ -19,7 +19,9 @@ parser.add_argument("--pr-title", required=True, help="Pull request title")
 # the default base URL is set to FediScience, because we are using it for the Mastodon bot
 # but it can be overridden by the user
 parser.add_argument("--base-url", default="https://fediscience.org", help="Mastodon base URL")
-args = parser.parse_args()
+args, unknown = parser.parse_known_args()
+
+logger.debug(f"Unknown arguments: {unknown}")
 
 mastodon_access_token = args.access_token
 
@@ -87,9 +89,12 @@ message = template.render(
     repository_url=repository_url
 )
 
-# check if the message is too long
+# check if the message is too long - trim it if necessary
 if len(message) > MAX_TOOT_LENGTH:
-    logger.error("The received message is too long for the Mastodon Robot. We are limited to 1500 characters.")
+    message = message[:MAX_TOOT_LENGTH - 3] + "..."
+    logger.warning("The received message is too long for the "
+                   f"Mastodon Robot. We are limited to {MAX_TOOT_LENGTH} "
+                   "characters. The message has been trimmed.")
     sys.exit(1)
 
 # post the message
