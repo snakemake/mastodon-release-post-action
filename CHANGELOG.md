@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.3...v1.3.0) (2025-05-16)
+
+
+### Features
+
+* implemented tolerant argument parsing ([0bb63cf](https://www.github.com/snakemake/mastodon-release-post-action/commit/0bb63cf0358c30a84256d1234a7336ef42c31499))
+
 ### [1.2.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.2...v1.2.3) (2025-05-16)
 
 
