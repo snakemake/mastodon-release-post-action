@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.0...v1.2.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* bugfix for dangling backslash, if no base-url is given ([b5b602b](https://www.github.com/snakemake/mastodon-release-post-action/commit/b5b602b5cdd882a3de89690bf0342c1585497d55))
+
 ## [1.2.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.1.1...v1.2.0) (2025-05-15)
 
 
