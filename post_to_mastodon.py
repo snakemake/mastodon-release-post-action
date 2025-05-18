@@ -135,7 +135,6 @@ if len(message) > MAX_TOOT_LENGTH:
         f"Mastodon Robot. We are limited to {MAX_TOOT_LENGTH} "
         "characters. The message has been trimmed."
     )
-    sys.exit(1)
 
 # post the message
 try:
