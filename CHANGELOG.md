@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.3.0...v1.4.0) (2025-05-18)
+
+
+### Features
+
+* extracting release nodes from changelog file ([34e9ac9](https://www.github.com/snakemake/mastodon-release-post-action/commit/34e9ac925676a19c4cc7293a8e63d2244b5048dc))
+* own detectin of CHANGELOG and producing release notes ([370551d](https://www.github.com/snakemake/mastodon-release-post-action/commit/370551d04c03120fdb01b1f5449e42275480f7eb))
+
+
+### Bug Fixes
+
+* blacked ([eecd8fd](https://www.github.com/snakemake/mastodon-release-post-action/commit/eecd8fdb4d6ea2689cdf74defec07e98c31c64e4))
+* removed ill-placed exit ([e61ba93](https://www.github.com/snakemake/mastodon-release-post-action/commit/e61ba93a303482c0a229df64cc938adc7e5eb3e4))
+* warning for unfound changelog placed correctly ([7b434f6](https://www.github.com/snakemake/mastodon-release-post-action/commit/7b434f6f5ead577d837ead2913cba490725307a2))
+
 ## [1.3.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.2.3...v1.3.0) (2025-05-16)
 
 
