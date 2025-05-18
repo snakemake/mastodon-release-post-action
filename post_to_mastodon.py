@@ -104,7 +104,6 @@ for root, dirs, files in os.walk(os.getcwd()):
 
 release_notes = ""
 if changelog_path:
-    logger.warning("CHANGELOG.md file not found")
     release_notes = ""
     # now, try to extract the release notes
     with open(changelog_path, "r") as changelog_file:
@@ -121,6 +120,8 @@ if changelog_path:
                 # join the lines and remove leading/trailing whitespace
                 release_notes = "\n".join(release_notes).strip()
                 break
+else:
+    logger.warning("CHANGELOG.md file not found")
 
 # next, append the release notes to the message
 if release_notes:
