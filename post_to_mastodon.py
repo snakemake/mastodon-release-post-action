@@ -16,7 +16,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
 parser.add_argument("--pr-title", required=True, help="Pull request title")
-parser.add_argument("--get-release-notes", action="store_true", help="Get release notes from the PR")
+parser.add_argument(
+    "--get-release-notes", action="store_true", help="Get release notes from the PR"
+)
 # the default base URL is set to FediScience, because we are using it for the Mastodon bot
 # but it can be overridden by the user
 parser.add_argument(
