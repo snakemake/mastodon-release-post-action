@@ -16,6 +16,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
 parser.add_argument("--pr-title", required=True, help="Pull request title")
+parser.add_argument("--get-release-notes", action="store_true", help="Get release notes from the PR")
 # the default base URL is set to FediScience, because we are using it for the Mastodon bot
 # but it can be overridden by the user
 parser.add_argument(
@@ -91,6 +92,37 @@ message = template.render(
     issue_url=issue_url,
     repository_url=repository_url,
 )
+
+# try to extract the release notes from the change log
+# first, we need to find the CHANGELOG.md file
+changelog_path = None
+for root, dirs, files in os.walk(os.getcwd()):
+    if "CHANGELOG.md" in files:
+        changelog_path = os.path.join(root, "CHANGELOG.md")
+
+release_notes = ""
+if changelog_path:
+    logger.warning("CHANGELOG.md file not found")
+    release_notes = ""
+    # now, try to extract the release notes
+    with open(changelog_path, "r") as changelog_file:
+        changlog_file.readline()  # skip the first line
+        for line in changelog_file:
+            if line.startswith(f"## [{version}]"):
+                # we found the version - now, we need to find the next version
+                # and extract the lines in between
+                release_notes = []
+                for line in changelog_file:
+                    if line.startswith("## ["):
+                        break
+                    release_notes.append(line)
+                # join the lines and remove leading/trailing whitespace
+                release_notes = "\n".join(release_notes).strip()
+                break
+
+# next, append the release notes to the message
+if release_notes:
+    message += "\n" + "Release Notes (possibly abbriged):\n" + release_notes
 
 # check if the message is too long - trim it if necessary
 if len(message) > MAX_TOOT_LENGTH:
