@@ -16,24 +16,28 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
 parser.add_argument("--pr-title", required=True, help="Pull request title")
+parser.add_argument(
+    "--get-release-notes", action="store_true", help="Get release notes from the PR"
+)
 # the default base URL is set to FediScience, because we are using it for the Mastodon bot
 # but it can be overridden by the user
-parser.add_argument("--base-url", default="https://fediscience.org", help="Mastodon base URL")
+parser.add_argument(
+    "--base-url", default="https://fediscience.org", help="Mastodon base URL"
+)
 args, unknown = parser.parse_known_args()
 
 logger.debug(f"Unknown arguments: {unknown}")
 
 mastodon_access_token = args.access_token
 
-m = Mastodon(access_token=args.access_token,
-             api_base_url=args.base_url)
+m = Mastodon(access_token=args.access_token, api_base_url=args.base_url)
 
 pr_title = args.pr_title
 if pr_title == "":
     logger.error("PR title is empty")
     sys.exit(1)
 
-match = re.search(r'[Rr]elease\s+([0-9]+\.[0-9]+\.[0-9]+)', pr_title)
+match = re.search(r"[Rr]elease\s+([0-9]+\.[0-9]+\.[0-9]+)", pr_title)
 if match:
     version = match.group(1)
 else:
@@ -41,19 +45,21 @@ else:
     sys.exit(1)
 
 # validate version format
-if not re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', version):
+if not re.match(r"^[0-9]+\.[0-9]+\.[0-9]+$", version):
     logger.error("Invalid version format")
     sys.exit(1)
 
 # Get repository information
 github_repository = os.environ.get("GITHUB_REPOSITORY", "")
-repository_url = os.environ.get("REPOSITORY_URL", "") 
+repository_url = os.environ.get("REPOSITORY_URL", "")
 
 # If REPOSITORY_URL is not set, try to construct it from GITHUB_REPOSITORY
 if not repository_url and github_repository:
     repository_url = f"https://github.com/{github_repository}"
 elif not repository_url:
-    logger.error("Neither REPOSITORY_URL nor GITHUB_REPOSITORY environment variables are set")
+    logger.error(
+        "Neither REPOSITORY_URL nor GITHUB_REPOSITORY environment variables are set"
+    )
     sys.exit(1)
 
 # Get issue URL if available
@@ -86,16 +92,49 @@ message = template.render(
     version=version,
     changelog=changelog,
     issue_url=issue_url,
-    repository_url=repository_url
+    repository_url=repository_url,
 )
+
+# try to extract the release notes from the change log
+# first, we need to find the CHANGELOG.md file
+changelog_path = None
+for root, dirs, files in os.walk(os.getcwd()):
+    if "CHANGELOG.md" in files:
+        changelog_path = os.path.join(root, "CHANGELOG.md")
+
+release_notes = ""
+if changelog_path:
+    release_notes = ""
+    # now, try to extract the release notes
+    with open(changelog_path, "r") as changelog_file:
+        changlog_file.readline()  # skip the first line
+        for line in changelog_file:
+            if line.startswith(f"## [{version}]"):
+                # we found the version - now, we need to find the next version
+                # and extract the lines in between
+                release_notes = []
+                for line in changelog_file:
+                    if line.startswith("## ["):
+                        break
+                    release_notes.append(line)
+                # join the lines and remove leading/trailing whitespace
+                release_notes = "\n".join(release_notes).strip()
+                break
+else:
+    logger.warning("CHANGELOG.md file not found")
+
+# next, append the release notes to the message
+if release_notes:
+    message += "\n" + "Release Notes (possibly abbriged):\n" + release_notes
 
 # check if the message is too long - trim it if necessary
 if len(message) > MAX_TOOT_LENGTH:
-    message = message[:MAX_TOOT_LENGTH - 3] + "..."
-    logger.warning("The received message is too long for the "
-                   f"Mastodon Robot. We are limited to {MAX_TOOT_LENGTH} "
-                   "characters. The message has been trimmed.")
-    sys.exit(1)
+    message = message[: MAX_TOOT_LENGTH - 3] + "..."
+    logger.warning(
+        "The received message is too long for the "
+        f"Mastodon Robot. We are limited to {MAX_TOOT_LENGTH} "
+        "characters. The message has been trimmed."
+    )
 
 # post the message
 try:
@@ -106,4 +145,3 @@ except Exception as e:
 
 # report a successful post
 logger.info("Message posted to Mastodon")
-
