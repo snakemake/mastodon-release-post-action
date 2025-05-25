@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.4.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.4.0...v1.4.1) (2025-05-25)
+
+
+### Bug Fixes
+
+* typo in variable ([9e81a21](https://www.github.com/snakemake/mastodon-release-post-action/commit/9e81a21a387a63487c7d0e6e4a559a7ef27bc656))
+
 ## [1.4.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.3.0...v1.4.0) (2025-05-18)
 
 
