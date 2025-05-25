@@ -107,7 +107,7 @@ if changelog_path:
     release_notes = ""
     # now, try to extract the release notes
     with open(changelog_path, "r") as changelog_file:
-        changlog_file.readline()  # skip the first line
+        changelog_file.readline()  # skip the first line
         for line in changelog_file:
             if line.startswith(f"## [{version}]"):
                 # we found the version - now, we need to find the next version
