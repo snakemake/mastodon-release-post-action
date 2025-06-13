@@ -11,13 +11,20 @@ from mastodon import Mastodon
 
 
 # Convert to Unicode bold (for A-Z, a-z, 0-9)
-def to_unicode_bold(text):
-    bold_map = {
+# we should create the translation table only once:
+_UNICODE_BOLD_TRANSLATION = str.maketrans(
+    {
         **{chr(i): chr(0x1D400 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
         **{chr(i): chr(0x1D41A + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
         **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
     }
-    return "".join(bold_map.get(c, c) for c in text)
+)
+
+def to_unicode_bold(text: str) -> str:
+    """
+    Convert ASCII alphanumeric characters in the input text to their Unicode bold counterparts.
+    """
+    return text.translate(_UNICODE_BOLD_TRANSLATION)
 
 
 logger = logging.getLogger(__name__)
@@ -131,8 +138,12 @@ if changelog_path:
                     if line.startswith("#"):
                         # Remove all leading # (1 to 4) and whitespace, then make the rest bold using Unicode bold
                         line = line.lstrip("#").strip()
-                        line = to_unicode_bold(line)
+                        line = to_unicode_bold(line) + "\n"
                     release_notes.append(line)
+                    # we also need to extract Markdown links and past the plane text link:
+                    markdown_links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line)
+                    for text, url in markdown_links:
+                        line = line.replace(f"[{text}]({url})", f"{url}")
                 # join the lines and remove leading/trailing whitespace
                 release_notes = "\n".join(release_notes).strip()
                 break
@@ -141,7 +152,16 @@ else:
 
 # next, append the release notes to the message
 if release_notes:
-    message += "\n" + "Release Notes (possibly abbriged):\n" + release_notes
+    header = "Release Notes (possibly abbriged):"
+    # Convert header to Unicode italic (for A-Z, a-z, 0-9)
+    italic_map = {
+        **{chr(i): chr(0x1D434 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D44E + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
+        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+    }
+    emph_header = "".join(italic_map.get(c, c) for c in header)
+    message += "\n" + emph_header + "\n" + release_notes
+    
 
 # check if the message is too long - trim it if necessary
 if len(message) > MAX_TOOT_LENGTH:
