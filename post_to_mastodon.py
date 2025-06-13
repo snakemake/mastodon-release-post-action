@@ -9,6 +9,17 @@ import sys
 import jinja2
 from mastodon import Mastodon
 
+
+# Convert to Unicode bold (for A-Z, a-z, 0-9)
+def to_unicode_bold(text):
+    bold_map = {
+        **{chr(i): chr(0x1D400 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D41A + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
+        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+    }
+    return "".join(bold_map.get(c, c) for c in text)
+
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
@@ -116,6 +127,11 @@ if changelog_path:
                 for line in changelog_file:
                     if line.startswith("## ["):
                         break
+                    # if the line still starts with and number of # reformat to be bold
+                    if line.startswith("#"):
+                        # Remove all leading # (1 to 4) and whitespace, then make the rest bold using Unicode bold
+                        line = line.lstrip("#").strip()
+                        line = to_unicode_bold(line)
                     release_notes.append(line)
                 # join the lines and remove leading/trailing whitespace
                 release_notes = "\n".join(release_notes).strip()
