@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.4.1...v1.5.0) (2025-06-13)
+
+
+### Features
+
+* improved formatting of changelog texts ([25c6161](https://www.github.com/snakemake/mastodon-release-post-action/commit/25c616168690c1cb5c0212c90a5742808b75451c))
+
 ### [1.4.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.4.0...v1.4.1) (2025-05-25)
 
 
