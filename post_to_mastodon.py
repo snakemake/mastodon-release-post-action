@@ -139,11 +139,12 @@ if changelog_path:
                         # Remove all leading # (1 to 4) and whitespace, then make the rest bold using Unicode bold
                         line = line.lstrip("#").strip()
                         line = to_unicode_bold(line) + "\n"
-                    release_notes.append(line)
-                    # we also need to extract Markdown links and past the plane text link:
-                    markdown_links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line)
-                    for text, url in markdown_links:
-                        line = line.replace(f"[{text}]({url})", f"{url}")
+                    # we also need to extract issue links and paste the plain text link:
+                    match = re.search(r"(.*)\(\#\d+ \((https?://github\.com/[^)]+issues/\d+)\)\)", line)
+                    if match:
+                        # if we have a match, we need to replace the line with the plain text link
+                        line = f"{match.group(1)}: {match.group(2)}"
+                    release_notes.append(line.strip())
                 # join the lines and remove leading/trailing whitespace
                 release_notes = "\n".join(release_notes).strip()
                 break
