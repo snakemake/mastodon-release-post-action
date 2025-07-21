@@ -26,6 +26,23 @@ def to_unicode_bold(text: str) -> str:
     """
     return text.translate(_UNICODE_BOLD_TRANSLATION)
 
+def extract_issue_links(line):
+    """
+    Formats a changelog line to extract and display issue links, only.
+    Will disregard the commit links.
+    """
+    match_issues = re.findall(r"(\[#(\d+)\]\((https?://github\.com/[^)]+issues/\d+)\))", line)
+
+    if match_issues:
+        if len(match_issues) == 1:
+            return line.replace(match_issues[0][0], match_issues[0][2])  # Replace the markdown with the link
+        else:
+            issue_links = ", ".join([link[2] for link in match_issues])
+            text_prefix = line.split("(")[0].split("* ")[1].strip()  # Extract text before first issue link
+            return f"{text_prefix}: {issue_links}"
+
+    return line  # Return the original line if no issue links are found
+
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -140,10 +157,7 @@ if changelog_path:
                         line = line.lstrip("#").strip()
                         line = to_unicode_bold(line) + "\n"
                     # we also need to extract issue links and paste the plain text link:
-                    match = re.search(r"(.*)\(\#\d+ \((https?://github\.com/[^)]+issues/\d+)\)\)", line)
-                    if match:
-                        # if we have a match, we need to replace the line with the plain text link
-                        line = f"{match.group(1)}: {match.group(2)}"
+                    line = extract_issue_links(line)
                     release_notes.append(line.strip())
                 # join the lines and remove leading/trailing whitespace
                 release_notes = "\n".join(release_notes).strip()
