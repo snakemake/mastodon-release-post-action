@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "changelog-formatter-tests"
-version = "0.1.0"
+version = "1.5.0"
 description = "Tests for changelog formatting function"
 authors = [
-           "Christian Meesters <meesters@uni-mainz.de>"
+           "Christian Meesters <meesters@uni-mainz.de>",
            "Johannes Koester <johannes.koester@uni-due.de>"
 ]
 readme = "README.md"
