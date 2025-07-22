@@ -20,25 +20,33 @@ _UNICODE_BOLD_TRANSLATION = str.maketrans(
     }
 )
 
+
 def to_unicode_bold(text: str) -> str:
     """
     Convert ASCII alphanumeric characters in the input text to their Unicode bold counterparts.
     """
     return text.translate(_UNICODE_BOLD_TRANSLATION)
 
+
 def extract_issue_links(line):
     """
     Formats a changelog line to extract and display issue links, only.
     Will disregard the commit links.
     """
-    match_issues = re.findall(r"(\[#(\d+)\]\((https?://github\.com/[^)]+issues/\d+)\))", line)
+    match_issues = re.findall(
+        r"(\[#(\d+)\]\((https?://github\.com/[^)]+issues/\d+)\))", line
+    )
 
     if match_issues:
         if len(match_issues) == 1:
-            return line.replace(match_issues[0][0], match_issues[0][2])  # Replace the markdown with the link
+            return line.replace(
+                match_issues[0][0], match_issues[0][2]
+            )  # Replace the markdown with the link
         else:
             issue_links = ", ".join([link[2] for link in match_issues])
-            text_prefix = line.split("(")[0].split("* ")[1].strip()  # Extract text before first issue link
+            text_prefix = (
+                line.split("(")[0].split("* ")[1].strip()
+            )  # Extract text before first issue link
             return f"{text_prefix}: {issue_links}"
 
     return line  # Return the original line if no issue links are found
@@ -176,7 +184,7 @@ if release_notes:
     }
     emph_header = "".join(italic_map.get(c, c) for c in header)
     message += "\n" + emph_header + "\n" + release_notes
-    
+
 
 # check if the message is too long - trim it if necessary
 if len(message) > MAX_TOOT_LENGTH:
