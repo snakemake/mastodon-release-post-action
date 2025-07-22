@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.5.0...v1.6.0) (2025-07-22)
+
+
+### Features
+
+* accounting for multiple link cases ([c2803bb](https://www.github.com/snakemake/mastodon-release-post-action/commit/c2803bbbbbca29d2d058312faf08a4dbc6d7a07c))
+* added pyproject toml file ([18e5f53](https://www.github.com/snakemake/mastodon-release-post-action/commit/18e5f534423b4c1642856dd4840c41f1bd939ade))
+* added test suite test.py file ([837521f](https://www.github.com/snakemake/mastodon-release-post-action/commit/837521f2dca47799cbbb0e8ed39cb65281094b7b))
+* added test suite test.py file ([c468f96](https://www.github.com/snakemake/mastodon-release-post-action/commit/c468f962c9214109bce17255a9f27958057ca587))
+
+
+### Bug Fixes
+
+* attempt to fix CI pipeline ([cf3ee5b](https://www.github.com/snakemake/mastodon-release-post-action/commit/cf3ee5b5a817ee5749e693d4c9bbf22c45644dcd))
+* formatting ([c736b46](https://www.github.com/snakemake/mastodon-release-post-action/commit/c736b4664deecbb30959726aa750482b5b709907))
+* gnarf ([8a5978b](https://www.github.com/snakemake/mastodon-release-post-action/commit/8a5978bcec38d81cec7bf41f5597dbb29366a9f3))
+* hopefully filtering out links, now ([6a0ee66](https://www.github.com/snakemake/mastodon-release-post-action/commit/6a0ee66c187536523befe38e4b7512c75f74071d))
+* python version and missing poetry ([24884bb](https://www.github.com/snakemake/mastodon-release-post-action/commit/24884bb7bf8a66a63ffae8632866cbf5950afc21))
+* removed code and moved it to ci.yml ([223b3cf](https://www.github.com/snakemake/mastodon-release-post-action/commit/223b3cf815f6fce075da193b164205ae8c3e4f58))
+* syntax ([332c3f9](https://www.github.com/snakemake/mastodon-release-post-action/commit/332c3f9400755f5da1c7dea4f59a1142b2e9d25e))
+* trigger ([dfb2bed](https://www.github.com/snakemake/mastodon-release-post-action/commit/dfb2bed7be542550c03b28ee2b597303fee8365f))
+
 ## [1.5.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.4.1...v1.5.0) (2025-06-13)
 
 
