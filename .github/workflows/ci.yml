@@ -83,7 +83,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          poetry run pytest tests/tests.py -sv --tb=short --disable-warnings
+          poetry run coverage run -m pytest tests/tests.py -sv --tb=short --disable-warnings
       
       - name: Run Coverage
         run: |
