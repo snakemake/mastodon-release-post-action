@@ -64,6 +64,8 @@ jobs:
 
       - name: Check code
         run: poetry run flake8
+        
+      - name: Check formatting
         run: poetry run black --check .
     
   testing:
