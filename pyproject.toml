@@ -1,12 +1,14 @@
 [tool.poetry]
-name = "changelog-formatter-tests"
+name = "mastodon-release-post-action"
 version = "1.5.0"
-description = "Tests for changelog formatting function"
+description = "An Auto-Release Bot Tooter for Mastodon"
 authors = [
            "Christian Meesters <meesters@uni-mainz.de>",
            "Johannes Koester <johannes.koester@uni-due.de>"
 ]
 readme = "README.md"
+license = "MIT"
+keywords = ["mastodon", "announcement"]
 
 [tool.poetry.dependencies]
 python = "^3.12"  
