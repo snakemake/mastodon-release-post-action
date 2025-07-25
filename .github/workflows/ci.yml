@@ -5,7 +5,8 @@ on:
     branches: 
         - main
   pull_request:
-    branches: [ * ]
+    branches:
+      - "*"
 
 jobs:
   formatting:
@@ -63,18 +64,26 @@ jobs:
 
       - name: Check code
         run: poetry run flake8
-        run: poetry run black --check .
     
   testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: poetry  
+          
+      - name: Install poetry
+        run: pip install poetry
+        
+      - name: Determine dependencies
+        run: poetry lock
+        
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: poetry
       
       - name: Install dependencies
         run: |

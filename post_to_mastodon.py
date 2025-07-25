@@ -8,6 +8,7 @@ import sys
 
 import jinja2
 from mastodon import Mastodon
+from lib.utils import extract_issue_links
 
 
 # Convert to Unicode bold (for A-Z, a-z, 0-9)
@@ -23,33 +24,10 @@ _UNICODE_BOLD_TRANSLATION = str.maketrans(
 
 def to_unicode_bold(text: str) -> str:
     """
-    Convert ASCII alphanumeric characters in the input text to their Unicode bold counterparts.
+    Convert ASCII alphanumeric characters in the input text to their Unicode
+    bold counterparts.
     """
     return text.translate(_UNICODE_BOLD_TRANSLATION)
-
-
-def extract_issue_links(line):
-    """
-    Formats a changelog line to extract and display issue links, only.
-    Will disregard the commit links.
-    """
-    match_issues = re.findall(
-        r"(\[#(\d+)\]\((https?://github\.com/[^)]+issues/\d+)\))", line
-    )
-
-    if match_issues:
-        if len(match_issues) == 1:
-            return line.replace(
-                match_issues[0][0], match_issues[0][2]
-            )  # Replace the markdown with the link
-        else:
-            issue_links = ", ".join([link[2] for link in match_issues])
-            text_prefix = (
-                line.split("(")[0].split("* ")[1].strip()
-            )  # Extract text before first issue link
-            return f"{text_prefix}: {issue_links}"
-
-    return line  # Return the original line if no issue links are found
 
 
 logger = logging.getLogger(__name__)
@@ -62,8 +40,8 @@ parser.add_argument("--pr-title", required=True, help="Pull request title")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
-# the default base URL is set to FediScience, because we are using it for the Mastodon bot
-# but it can be overridden by the user
+# the default base URL is set to FediScience, because we are using it for the
+# Mastodon bot but it can be overridden by the user
 parser.add_argument(
     "--base-url", default="https://fediscience.org", help="Mastodon base URL"
 )
@@ -161,7 +139,8 @@ if changelog_path:
                         break
                     # if the line still starts with and number of # reformat to be bold
                     if line.startswith("#"):
-                        # Remove all leading # (1 to 4) and whitespace, then make the rest bold using Unicode bold
+                        # Remove all leading # (1 to 4) and whitespace, then make the
+                        # rest bold using Unicode bold
                         line = line.lstrip("#").strip()
                         line = to_unicode_bold(line) + "\n"
                     # we also need to extract issue links and paste the plain text link:
