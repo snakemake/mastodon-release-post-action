@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mastodon-release-post-action"
+name = "post_to_mastodon"
 version = "1.5.0"
 description = "An Auto-Release Bot Tooter for Mastodon"
 authors = [
