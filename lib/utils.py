@@ -1,5 +1,4 @@
 import re
-import sys
 
 
 def extract_issue_links(line):
@@ -29,5 +28,3 @@ def extract_issue_links(line):
             return f"* {text_prefix}: {issue_links}"
 
     return line  # Return the original line if no issue links found
-
-

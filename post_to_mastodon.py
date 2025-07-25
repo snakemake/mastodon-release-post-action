@@ -3,10 +3,12 @@
 import argparse
 import logging
 import os
+import re
 import sys
 
 import jinja2
 from mastodon import Mastodon
+from lib.utils import extract_issue_links
 
 
 # Convert to Unicode bold (for A-Z, a-z, 0-9)
@@ -22,7 +24,8 @@ _UNICODE_BOLD_TRANSLATION = str.maketrans(
 
 def to_unicode_bold(text: str) -> str:
     """
-    Convert ASCII alphanumeric characters in the input text to their Unicode bold counterparts.
+    Convert ASCII alphanumeric characters in the input text to their Unicode
+    bold counterparts.
     """
     return text.translate(_UNICODE_BOLD_TRANSLATION)
 
@@ -37,8 +40,8 @@ parser.add_argument("--pr-title", required=True, help="Pull request title")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
-# the default base URL is set to FediScience, because we are using it for the Mastodon bot
-# but it can be overridden by the user
+# the default base URL is set to FediScience, because we are using it for the
+# Mastodon bot but it can be overridden by the user
 parser.add_argument(
     "--base-url", default="https://fediscience.org", help="Mastodon base URL"
 )
@@ -136,7 +139,8 @@ if changelog_path:
                         break
                     # if the line still starts with and number of # reformat to be bold
                     if line.startswith("#"):
-                        # Remove all leading # (1 to 4) and whitespace, then make the rest bold using Unicode bold
+                        # Remove all leading # (1 to 4) and whitespace, then make the
+                        # rest bold using Unicode bold
                         line = line.lstrip("#").strip()
                         line = to_unicode_bold(line) + "\n"
                     # we also need to extract issue links and paste the plain text link:
