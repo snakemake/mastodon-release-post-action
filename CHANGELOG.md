@@ -1,5 +1,24 @@
 # Changelog
 
+### [1.6.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.6.0...v1.6.1) (2025-07-25)
+
+
+### Bug Fixes
+
+* added missing dependencies to project toml ([6c5714c](https://www.github.com/snakemake/mastodon-release-post-action/commit/6c5714cda46ff63ca06a44d4b93f51b1173bbe22))
+* added missing lock statement ([a70a5c8](https://www.github.com/snakemake/mastodon-release-post-action/commit/a70a5c877fe17205ac77a00670155f1f47562783))
+* added setup.cfg ([5ecd4fb](https://www.github.com/snakemake/mastodon-release-post-action/commit/5ecd4fb2299217717e50aaa25df4cd9b58ef5ab5))
+* coverage and pytest ([68f0700](https://www.github.com/snakemake/mastodon-release-post-action/commit/68f070049ca82027aaa50ae4c4bc97cba88e50c0))
+* dependency constraints ([f9e0182](https://www.github.com/snakemake/mastodon-release-post-action/commit/f9e01822ce5b743af723ff6862764d66b3bd1530))
+* formatting ([f9c207c](https://www.github.com/snakemake/mastodon-release-post-action/commit/f9c207cb05bd55513c3623be81a4e2373e401979))
+* name equivalence ([dca5a0a](https://www.github.com/snakemake/mastodon-release-post-action/commit/dca5a0a1ee1ab73ae473deee8d336e825ef75f3f))
+* name needs to be equal to script name ([6c28e3b](https://www.github.com/snakemake/mastodon-release-post-action/commit/6c28e3b5aa84491ea1ddc60c50c41acc5b12a1c1))
+* order ([23c6a13](https://www.github.com/snakemake/mastodon-release-post-action/commit/23c6a13f64e6a88f6d981036c6a3858c5a7dea9c))
+* syntax ([32a6436](https://www.github.com/snakemake/mastodon-release-post-action/commit/32a6436166bd763e4c170bb57d3832c27c136407))
+* trigger ([b6c785d](https://www.github.com/snakemake/mastodon-release-post-action/commit/b6c785d855ba5ad3d5cd8716ea72fb330138dd10))
+* trigger syntax, next attempt ([82c36a2](https://www.github.com/snakemake/mastodon-release-post-action/commit/82c36a22290ed0438e844acc0c21770447f149d3))
+* unit tests ([ea41e73](https://www.github.com/snakemake/mastodon-release-post-action/commit/ea41e7362043fc08a29cb696d5e63130cc9b99a8))
+
 ## [1.6.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.5.0...v1.6.0) (2025-07-22)
 
 
