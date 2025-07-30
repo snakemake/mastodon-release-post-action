@@ -201,7 +201,8 @@ try:
                 "Image must be of type PNG or JPG(JPEG). " f"Received: {args.image}"
             )
             sys.exit(1)
-        # check whether we find an image of that name, for this we walk the current directory
+        # check whether we find an image of that name, 
+        # for this we walk the current directory
         image_path = None
         for root, dirs, files in os.walk(os.getcwd()):
             if args.image in files:
