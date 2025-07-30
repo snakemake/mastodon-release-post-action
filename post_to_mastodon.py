@@ -198,8 +198,7 @@ try:
         # first check if the image suffix is of type PNG or JPG(JPEG)
         if not args.image.lower().endswith((".png", ".jpg", ".jpeg")):
             logger.error(
-                "Image must be of type PNG or JPG(JPEG). "
-                f"Received: {args.image}"
+                "Image must be of type PNG or JPG(JPEG). " f"Received: {args.image}"
             )
             sys.exit(1)
         # check whether we find an image of that name, for this we walk the current directory
