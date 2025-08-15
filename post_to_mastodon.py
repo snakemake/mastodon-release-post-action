@@ -191,11 +191,9 @@ if len(message) > MAX_TOOT_LENGTH:
     )
 
 # post the message
-# ...existing code...
-# post the message
 try:
     media_ids = []
-
+    
     # if we have an image path, we post the image as well
     if args.image:
         # first check if the image suffix is of type PNG or JPG(JPEG)
@@ -214,15 +212,15 @@ try:
         if not image_path:
             logger.error(f"Image {args.image} not found in the repository")
             sys.exit(1)
-
+        
         # Upload media and get media ID
         if args.image_description:
             media = m.media_post(image_path, description=args.image_description)
         else:
             media = m.media_post(image_path)
-        media_ids.append(media["id"])
+        media_ids.append(media['id'])
         logger.info(f"Image {image_path} uploaded to Mastodon")
-
+    
     # Post the status with media attached (if any)
     m.status_post(message, media_ids=media_ids if media_ids else None)
 
