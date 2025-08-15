@@ -40,6 +40,22 @@ parser.add_argument("--pr-title", required=True, help="Pull request title")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
+parser.add_argument(
+    "--image",
+    help=(
+        "If desired, indicate a repository path to an image to be posted. "
+        "Please indicate the name only, e.g., 'image.png'. The action will "
+        "look for the image in the repository root. Allowed types are PNG, "
+        "JPG(JPEG)."
+    ),
+)
+parser.add_argument(
+    "--image-description",
+    help=(
+        "Indicate a description for the image to be posted. "
+        "This will be used as alt text for the image."
+    ),
+)
 # the default base URL is set to FediScience, because we are using it for the
 # Mastodon bot but it can be overridden by the user
 parser.add_argument(
@@ -176,7 +192,38 @@ if len(message) > MAX_TOOT_LENGTH:
 
 # post the message
 try:
-    m.status_post(message)
+    media_ids = []
+
+    # if we have an image path, we post the image as well
+    if args.image:
+        # first check if the image suffix is of type PNG or JPG(JPEG)
+        if not args.image.lower().endswith((".png", ".jpg", ".jpeg")):
+            logger.error(
+                "Image must be of type PNG or JPG(JPEG). " f"Received: {args.image}"
+            )
+            sys.exit(1)
+        # check whether we find an image of that name,
+        # for this we walk the current directory
+        image_path = None
+        for root, dirs, files in os.walk(os.getcwd()):
+            if args.image in files:
+                image_path = os.path.join(root, args.image)
+                break
+        if not image_path:
+            logger.error(f"Image {args.image} not found in the repository")
+            sys.exit(1)
+
+        # Upload media and get media ID
+        if args.image_description:
+            media = m.media_post(image_path, description=args.image_description)
+        else:
+            media = m.media_post(image_path)
+        media_ids.append(media["id"])
+        logger.info(f"Image {image_path} uploaded to Mastodon")
+
+    # Post the status with media attached (if any)
+    m.status_post(message, media_ids=media_ids if media_ids else None)
+
 except Exception as e:
     logger.error(f"Failed to post to Mastodon: {e}")
     sys.exit(1)
