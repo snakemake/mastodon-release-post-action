@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.0...v1.7.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* input tags for images added ([cc98e57](https://www.github.com/snakemake/mastodon-release-post-action/commit/cc98e57485fa478b1cc7585220efc0bae3c6059d))
+
 ## [1.7.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.6.1...v1.7.0) (2025-08-15)
 
 
