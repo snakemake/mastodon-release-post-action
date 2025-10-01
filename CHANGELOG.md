@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.6.1...v1.7.0) (2025-08-15)
+
+
+### Features
+
+* added capability to append images to posts ([c1974a3](https://www.github.com/snakemake/mastodon-release-post-action/commit/c1974a39550865ec9317895a875ce95439fd821b))
+
+
+### Bug Fixes
+
+* duplication in comment ([62eec87](https://www.github.com/snakemake/mastodon-release-post-action/commit/62eec873e3cff8eaff9f7182041c9f7435ed5345))
+* formatting ([0241455](https://www.github.com/snakemake/mastodon-release-post-action/commit/0241455708e6ec350e90679b31497e7b1e8f3732))
+* formatting ([45e2980](https://www.github.com/snakemake/mastodon-release-post-action/commit/45e2980a77b538206b4f4d26c1036e51f962fc4c))
+* formatting ([f60e952](https://www.github.com/snakemake/mastodon-release-post-action/commit/f60e952679b4a3dfb8383a057eb57abaf64eaa1c))
+* image posts working now ([9e1946a](https://www.github.com/snakemake/mastodon-release-post-action/commit/9e1946ad3f7576a95bdcd0ef9cbbb388c2402826))
+* linting ([bc225fb](https://www.github.com/snakemake/mastodon-release-post-action/commit/bc225fbbbf7fba261575cd9717119f866fda5278))
+* linting - once more ([c058716](https://www.github.com/snakemake/mastodon-release-post-action/commit/c058716b06d5f99cb94c33cabc0df5e918e18c08))
+
 ### [1.6.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.6.0...v1.6.1) (2025-07-25)
 
 
