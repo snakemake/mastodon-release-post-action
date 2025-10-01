@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.1...v1.7.2) (2025-10-01)
+
+
+### Bug Fixes
+
+* interface ([fa9c690](https://www.github.com/snakemake/mastodon-release-post-action/commit/fa9c6900ddbce1863274b65687d156fe4710782b))
+
 ### [1.7.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.0...v1.7.1) (2025-10-01)
 
 
