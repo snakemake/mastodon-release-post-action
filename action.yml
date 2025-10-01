@@ -15,6 +15,12 @@ inputs:
   base-url:
     description: 'The base URL of the Mastodon instance'
     required: false
+  image:
+    description: 'Path to an image to include in the post'
+    required: false
+  image-description:
+    description: 'Description of the image for accessibility'
+    required: false
 
 runs:
   using: "composite"
