@@ -47,5 +47,11 @@ runs:
           if [ -n "${{ inputs.base-url }}" ]; then
             args+=(--base-url "${{ inputs.base-url }}" )
           fi
+          if [ -n "${{ inputs.image }}" ]; then
+            args+=(--image "${{ inputs.image }}" )
+          fi
+          if [ -n "${{ inputs.image-description }}" ]; then
+            args+=(--image-description "${{ inputs.image-description }}" )
+          fi
           python3 "${{ github.action_path }}/post_to_mastodon.py" "${args[@]}"
 
