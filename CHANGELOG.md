@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.7.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.3...v1.7.4) (2025-11-30)
+
+
+### Bug Fixes
+
+* message escaping ([7ae8649](https://www.github.com/snakemake/mastodon-release-post-action/commit/7ae8649b07a3df5db47fdbce61fc76b121adb567))
+* safer handling with SHELL=/bin/bash ([4747963](https://www.github.com/snakemake/mastodon-release-post-action/commit/4747963212796e539cf771b18940c45d39ad47ab))
+
 ### [1.7.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.2...v1.7.3) (2025-11-30)
 
 
