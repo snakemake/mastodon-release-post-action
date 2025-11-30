@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.2...v1.7.3) (2025-11-30)
+
+
+### Bug Fixes
+
+* version of actions/checkout set to 6 ([ad384a5](https://www.github.com/snakemake/mastodon-release-post-action/commit/ad384a5ff29b5554d9d9b2797898cd7bab6b153b))
+
 ### [1.7.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.1...v1.7.2) (2025-10-01)
 
 
