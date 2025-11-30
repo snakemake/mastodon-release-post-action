@@ -39,19 +39,26 @@ runs:
         max_attempts: 3
         command: |
           set -o errexit
+          MESSAGE='${{ inputs.message }}'
+          BASE_URL='${{ inputs.base-url }}'
+          IMAGE='${{ inputs.image }}'
+          IMAGE_DESC='${{ inputs.image-description }}'
+          
           args=(
-            --message "${{ inputs.message }}"
             --access-token "${{ inputs.access-token }}"
             --pr-title "${{ inputs.pr-title }}"
           )
-          if [ -n "${{ inputs.base-url }}" ]; then
-            args+=(--base-url "${{ inputs.base-url }}" )
+          if [ -n "$MESSAGE" ]; then
+            args+=(--message "$MESSAGE")
           fi
-          if [ -n "${{ inputs.image }}" ]; then
-            args+=(--image "${{ inputs.image }}" )
+          if [ -n "$BASE_URL" ]; then
+            args+=(--base-url "$BASE_URL")
           fi
-          if [ -n "${{ inputs.image-description }}" ]; then
-            args+=(--image-description "${{ inputs.image-description }}" )
+          if [ -n "$IMAGE" ]; then
+            args+=(--image "$IMAGE")
+          fi
+          if [ -n "$IMAGE_DESC" ]; then
+            args+=(--image-description "$IMAGE_DESC")
           fi
           python3 "${{ github.action_path }}/post_to_mastodon.py" "${args[@]}"
 
