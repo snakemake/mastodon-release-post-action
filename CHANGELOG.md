@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.6](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.5...v1.7.6) (2025-11-30)
+
+
+### Bug Fixes
+
+* another attempt to save escaping ([c753afd](https://www.github.com/snakemake/mastodon-release-post-action/commit/c753afd715b93a9ecf7d775297c9d5653573290c))
+
 ### [1.7.5](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.4...v1.7.5) (2025-11-30)
 
 
