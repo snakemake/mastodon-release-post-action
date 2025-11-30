@@ -34,33 +34,39 @@ runs:
       
     - name: Post to Mastodon
       uses: nick-fields/retry@v2
-      env:
-        MESSAGE: ${{ inputs.message }}
-        BASE_URL: ${{ inputs.base-url }}
-        IMAGE: ${{ inputs.image }}
-        IMAGE_DESC: ${{ inputs.image-description }}
-        ACCESS_TOKEN: ${{ inputs.access-token }}
-        PR_TITLE: ${{ inputs.pr-title }}
       with:
         timeout_minutes: 10
         max_attempts: 3
         command: |
           set -o errexit
-          args=(
-            --access-token "$ACCESS_TOKEN"
-            --pr-title "$PR_TITLE"
+          
+          # Use heredoc to safely pass message content
+          MESSAGE=$(cat <<'EOF'
+          ${{ inputs.message }}
+          EOF
           )
-          if [ -n "$MESSAGE" ]; then
-            args+=(--message "$MESSAGE")
+          
+          # Heredoc for PR title as well
+          PR_TITLE=$(cat <<'EOF'
+          ${{ inputs.pr-title }}
+          EOF
+          )
+          
+          args=(
+            --message "$MESSAGE"
+            --access-token "${{ inputs.access-token }}"
+            --pr-title "$PR_TITLE"
+            )
+          
+          if [ -n "${{ inputs.base-url }}" ]; then
+            args+=(--base-url "${{ inputs.base-url }}")
           fi
-          if [ -n "$BASE_URL" ]; then
-            args+=(--base-url "$BASE_URL")
+          if [ -n "${{ inputs.image }}" ]; then
+            args+=(--image "${{ inputs.image }}")
           fi
-          if [ -n "$IMAGE" ]; then
-            args+=(--image "$IMAGE")
+          if [ -n "${{ inputs.image-description }}" ]; then
+            args+=(--image-description "${{ inputs.image-description }}")
           fi
-          if [ -n "$IMAGE_DESC" ]; then
-            args+=(--image-description "$IMAGE_DESC")
-          fi
+          
           python3 "${{ github.action_path }}/post_to_mastodon.py" "${args[@]}"
 
