@@ -34,19 +34,21 @@ runs:
       
     - name: Post to Mastodon
       uses: nick-fields/retry@v2
+      env:
+        MESSAGE='${{ inputs.message }}'
+        BASE_URL='${{ inputs.base-url }}'
+        IMAGE='${{ inputs.image }}'
+        IMAGE_DESC='${{ inputs.image-description }}'
+        ACCESS_TOKEN='${{ inputs.access-token }}'
+        PR_TITLE='${{ inputs.pr-title }}'
       with:
         timeout_minutes: 10
         max_attempts: 3
         command: |
           set -o errexit
-          MESSAGE='${{ inputs.message }}'
-          BASE_URL='${{ inputs.base-url }}'
-          IMAGE='${{ inputs.image }}'
-          IMAGE_DESC='${{ inputs.image-description }}'
-          
           args=(
-            --access-token "${{ inputs.access-token }}"
-            --pr-title "${{ inputs.pr-title }}"
+            --access-token "$ACCESS_TOKEN"
+            --pr-title "$PR_TITLE"
           )
           if [ -n "$MESSAGE" ]; then
             args+=(--message "$MESSAGE")
