@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.5](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.4...v1.7.5) (2025-11-30)
+
+
+### Bug Fixes
+
+* removed single quotes ([9877235](https://www.github.com/snakemake/mastodon-release-post-action/commit/987723538e41d9e4be4b8a601c411be8b1f40e0e))
+
 ### [1.7.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.3...v1.7.4) (2025-11-30)
 
 
