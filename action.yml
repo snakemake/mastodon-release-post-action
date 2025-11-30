@@ -35,12 +35,12 @@ runs:
     - name: Post to Mastodon
       uses: nick-fields/retry@v2
       env:
-        MESSAGE='${{ inputs.message }}'
-        BASE_URL='${{ inputs.base-url }}'
-        IMAGE='${{ inputs.image }}'
-        IMAGE_DESC='${{ inputs.image-description }}'
-        ACCESS_TOKEN='${{ inputs.access-token }}'
-        PR_TITLE='${{ inputs.pr-title }}'
+        MESSAGE: ${{ inputs.message }}
+        BASE_URL: ${{ inputs.base-url }}
+        IMAGE: ${{ inputs.image }}
+        IMAGE_DESC: ${{ inputs.image-description }}
+        ACCESS_TOKEN: ${{ inputs.access-token }}
+        PR_TITLE: ${{ inputs.pr-title }}
       with:
         timeout_minutes: 10
         max_attempts: 3
