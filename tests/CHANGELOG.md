@@ -1,0 +1,1 @@
+* testing conversion, only ([#221](https://github.com/snakemake/somewhere/issues/221)) ([3cef6b7](https://github.com/snakemake/snakemake-executor-plugin-slurm/commit/3cef6b7889c8ba09280f345bade3497b144bedc7))
