@@ -37,6 +37,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--message", required=True, help="Message to post to Mastodon")
 parser.add_argument("--access-token", required=True, help="Mastodon access token")
 parser.add_argument("--pr-title", required=True, help="Pull request title")
+parser.add_argument("--repo-title", help="Repository title for the release")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
@@ -123,6 +124,11 @@ else:
 # Maximum characters for Mastodon (on FediScience) is 1500
 MAX_TOOT_LENGTH = int(os.environ.get("MAX_TOOT_LENGTH", 1500))
 
+# Prepare repo_title with unicode bold formatting if provided
+repo_title = ""
+if args.repo_title:
+    repo_title = to_unicode_bold(args.repo_title)
+
 # Render the message with all available variables
 template = jinja2.Template(args.message)
 message = template.render(
@@ -130,6 +136,7 @@ message = template.render(
     changelog=changelog,
     issue_url=issue_url,
     repository_url=repository_url,
+    repo_title=repo_title,
 )
 
 # try to extract the release notes from the change log
