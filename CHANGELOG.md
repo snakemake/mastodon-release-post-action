@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.1](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.0...v1.8.1) (2026-03-09)
+
+
+### Bug Fixes
+
+* adding latest  flag to actions.yml ([c0885e9](https://www.github.com/snakemake/mastodon-release-post-action/commit/c0885e91daafc25ea16c81aa592eef7bb5804876))
+
 ## [1.8.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.6...v1.8.0) (2026-03-09)
 
 
