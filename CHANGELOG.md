@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.6...v1.8.0) (2026-03-09)
+
+
+### Features
+
+* added option to render repository title bold face ([42748fc](https://www.github.com/snakemake/mastodon-release-post-action/commit/42748fc44f8d5faf85f4c21d5da2af3020c08dfc))
+
 ### [1.7.6](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.7.5...v1.7.6) (2025-11-30)
 
 
