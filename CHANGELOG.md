@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.2...v1.8.3) (2026-03-10)
+
+
+### Bug Fixes
+
+* flag added ([d5377e6](https://www.github.com/snakemake/mastodon-release-post-action/commit/d5377e6d8e6234a5d0afa25942107ceca1287ea8))
+
 ### [1.8.2](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.1...v1.8.2) (2026-03-10)
 
 
