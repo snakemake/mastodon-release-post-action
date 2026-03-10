@@ -12,7 +12,7 @@ inputs:
   pr-title:
     description: 'The title of the pull request'
     required: true
-  repo-title:
+  repotitle:
     description: 'Title of a repository - enables formatting of that title'
     required: true
   base-url:
@@ -59,7 +59,7 @@ runs:
             --message "$MESSAGE"
             --access-token "${{ inputs.access-token }}"
             --pr-title "$PR_TITLE"
-            --repo-title "${{ inputs.repo-title }}"
+            --repotitle "${{ inputs.repotitle }}"
             )
           
           if [ -n "${{ inputs.base-url }}" ]; then
