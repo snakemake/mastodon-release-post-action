@@ -59,6 +59,7 @@ runs:
             --message "$MESSAGE"
             --access-token "${{ inputs.access-token }}"
             --pr-title "$PR_TITLE"
+            --repo-title "${{ inputs.repo-title }}"
             )
           
           if [ -n "${{ inputs.base-url }}" ]; then
