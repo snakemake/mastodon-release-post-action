@@ -13,7 +13,7 @@ inputs:
     description: 'The title of the pull request'
     required: true
   repo-title:
-    description: 'Title of a repository - enables formatting of that title
+    description: 'Title of a repository - enables formatting of that title'
     required: true
   base-url:
     description: 'The base URL of the Mastodon instance'
