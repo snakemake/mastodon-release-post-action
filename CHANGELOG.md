@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.3...v1.8.4) (2026-03-10)
+
+
+### Bug Fixes
+
+* rename repo-title to repotitle ([3422fa1](https://www.github.com/snakemake/mastodon-release-post-action/commit/3422fa1e75d56a5509ffc17741b0d2e3db81fa35))
+
 ### [1.8.3](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.2...v1.8.3) (2026-03-10)
 
 
