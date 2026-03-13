@@ -11,13 +11,13 @@ from mastodon import Mastodon
 from lib.utils import extract_issue_links
 
 
-# Convert to Unicode bold (for A-Z, a-z, 0-9)
+# Convert to Unicode bold sans-serif (for A-Z, a-z, 0-9)
 # we should create the translation table only once:
 _UNICODE_BOLD_TRANSLATION = str.maketrans(
     {
-        **{chr(i): chr(0x1D400 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
-        **{chr(i): chr(0x1D41A + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
-        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+        **{chr(i): chr(0x1D5D4 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D5EE + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
+        **{chr(i): chr(0x1D7EC + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
     }
 )
 
@@ -41,6 +41,7 @@ parser.add_argument("--repotitle", help="Repository title for the release")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
+parser.add_argument("--maintainers", help="Repository maintainer handles on Mastodon")
 parser.add_argument(
     "--image",
     help=(
@@ -129,6 +130,9 @@ repotitle = ""
 if args.repotitle:
     repotitle = to_unicode_bold(args.repotitle)
 
+if args.maintainers:
+    maintainers = ' '.join(args.maintainers.split(','))
+
 # Render the message with all available variables
 template = jinja2.Template(args.message)
 message = template.render(
@@ -137,7 +141,11 @@ message = template.render(
     issue_url=issue_url,
     repository_url=repository_url,
     repotitle=repotitle,
+    maintainers=args.maintainers,
 )
+
+print(message)
+sys.exit()
 
 # try to extract the release notes from the change log
 # first, we need to find the CHANGELOG.md file
@@ -178,11 +186,11 @@ else:
 # next, append the release notes to the message
 if release_notes:
     header = "Release Notes (possibly abbriged):"
-    # Convert header to Unicode italic (for A-Z, a-z, 0-9)
+    # Convert header to Unicode sans-serif italic (for A-Z, a-z, 0-9)
     italic_map = {
-        **{chr(i): chr(0x1D434 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
-        **{chr(i): chr(0x1D44E + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
-        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+        **{chr(i): chr(0x1D608 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D622 + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
+        **{chr(i): chr(0x1D7EC + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
     }
     emph_header = "".join(italic_map.get(c, c) for c in header)
     message += "\n" + emph_header + "\n" + release_notes
