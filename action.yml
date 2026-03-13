@@ -15,6 +15,9 @@ inputs:
   repotitle:
     description: 'Title of a repository - enables formatting of that title'
     required: true
+  maintainers:
+    description: 'List of maintainers - if empty the line will be ommitted from the message'
+    required: false
   base-url:
     description: 'The base URL of the Mastodon instance'
     required: false
@@ -62,6 +65,9 @@ runs:
             --repotitle "${{ inputs.repotitle }}"
             )
           
+          if [ -n "${{ inputs.maintainers }}" ]; then
+             args+=(--maintainers "${{ inputs.maintainers }}")
+          fi
           if [ -n "${{ inputs.base-url }}" ]; then
             args+=(--base-url "${{ inputs.base-url }}")
           fi

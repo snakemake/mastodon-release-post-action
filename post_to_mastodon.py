@@ -41,6 +41,7 @@ parser.add_argument("--repotitle", help="Repository title for the release")
 parser.add_argument(
     "--get-release-notes", action="store_true", help="Get release notes from the PR"
 )
+parser.add_argument("--maintainers", help="Repository maintainer handles on Mastodon")
 parser.add_argument(
     "--image",
     help=(
@@ -129,6 +130,9 @@ repotitle = ""
 if args.repotitle:
     repotitle = to_unicode_bold(args.repotitle)
 
+if args.maintainers:
+    maintainers = ' '.join(args.maintainers.split(','))
+
 # Render the message with all available variables
 template = jinja2.Template(args.message)
 message = template.render(
@@ -137,6 +141,7 @@ message = template.render(
     issue_url=issue_url,
     repository_url=repository_url,
     repotitle=repotitle,
+    maintainers=args.maintainers,
 )
 
 print(message)
