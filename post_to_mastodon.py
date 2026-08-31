@@ -12,7 +12,8 @@ from lib.utils import extract_issue_links
 
 
 # Convert to Unicode bold (for A-Z, a-z, 0-9)
-# Sans-serif bold ranges: U+1D5D4-U+1D5ED (A-Z), U+1D5EE-U+1D608 (a-z), U+1D7EC-U+1D7F5 (0-9)
+# Sans-serif bold ranges: U+1D5D4-U+1D5ED (A-Z), U+1D5EE-U+1D608 (a-z), 
+# U+1D7EC-U+1D7F5 (0-9)
 _UNICODE_BOLD_TRANSLATION = str.maketrans(
     {
         **{chr(i): chr(0x1D5D4 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
