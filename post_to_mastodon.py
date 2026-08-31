@@ -12,12 +12,21 @@ from lib.utils import extract_issue_links
 
 
 # Convert to Unicode bold (for A-Z, a-z, 0-9)
-# we should create the translation table only once:
+# Sans-serif bold ranges: U+1D5D4-U+1D5ED (A-Z), U+1D5EE-U+1D608 (a-z), U+1D7EC-U+1D7F5 (0-9)
 _UNICODE_BOLD_TRANSLATION = str.maketrans(
     {
-        **{chr(i): chr(0x1D400 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
-        **{chr(i): chr(0x1D41A + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
-        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+        **{chr(i): chr(0x1D5D4 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D5EE + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
+        **{chr(i): chr(0x1D7EC + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
+    }
+)
+
+# Convert to Unicode sans-serif italic (for A-Z, a-z)
+# Sans-serif italic ranges: U+1D608-U+1D621 (A-Z), U+1D622-U+1D63B (a-z)
+_UNICODE_ITALIC_TRANSLATION = str.maketrans(
+    {
+        **{chr(i): chr(0x1D608 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
+        **{chr(i): chr(0x1D622 + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
     }
 )
 
@@ -28,6 +37,14 @@ def to_unicode_bold(text: str) -> str:
     bold counterparts.
     """
     return text.translate(_UNICODE_BOLD_TRANSLATION)
+
+
+def to_unicode_italic(text: str) -> str:
+    """
+    Convert ASCII alphanumeric characters to their Unicode sans-serif italic
+    counterparts.
+    """
+    return text.translate(_UNICODE_ITALIC_TRANSLATION)
 
 
 logger = logging.getLogger(__name__)
@@ -178,13 +195,8 @@ else:
 # next, append the release notes to the message
 if release_notes:
     header = "Release Notes (possibly abbriged):"
-    # Convert header to Unicode italic (for A-Z, a-z, 0-9)
-    italic_map = {
-        **{chr(i): chr(0x1D434 + i - ord("A")) for i in range(ord("A"), ord("Z") + 1)},
-        **{chr(i): chr(0x1D44E + i - ord("a")) for i in range(ord("a"), ord("z") + 1)},
-        **{chr(i): chr(0x1D7CE + i - ord("0")) for i in range(ord("0"), ord("9") + 1)},
-    }
-    emph_header = "".join(italic_map.get(c, c) for c in header)
+    # Convert header to Unicode italic
+    emph_header = to_unicode_italic(header)
     message += "\n" + emph_header + "\n" + release_notes
 
 
