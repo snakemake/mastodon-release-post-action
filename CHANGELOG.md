@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.8.5](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.4...v1.8.5) (2026-08-31)
+
+
+### Bug Fixes
+
+* formatting ([5b0482d](https://www.github.com/snakemake/mastodon-release-post-action/commit/5b0482d117fa30c6087fdf17443ba94d08fbd00f))
+* formatting - fnarf ([061c448](https://www.github.com/snakemake/mastodon-release-post-action/commit/061c44868701ca6f0e8b50bdb5c7cd7dfe6a45ca))
+* sans-serif unicode translation in favour of serif ([14723d7](https://www.github.com/snakemake/mastodon-release-post-action/commit/14723d7257dc61cfd87360c8576e7ed8d85eebd1))
+
 ### [1.8.4](https://www.github.com/snakemake/mastodon-release-post-action/compare/v1.8.3...v1.8.4) (2026-03-10)
 
 
